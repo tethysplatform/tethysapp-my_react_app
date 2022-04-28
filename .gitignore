@@ -1,0 +1,13 @@
+*.pydevproject
+*.project
+*.egg-info
+*.class
+*.pyo
+*.pyc
+*.db
+*.sqlite
+*.DS_Store
+.idea/
+services.yml
+node_modules
+tethysapp/my_react_app/public/frontend/

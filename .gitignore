@@ -11,3 +11,4 @@
 services.yml
 node_modules
 tethysapp/my_react_app/public/frontend/
+tethysapp/my_react_app/workspaces/

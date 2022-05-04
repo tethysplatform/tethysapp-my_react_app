@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-	entry: ['./src'],
+	entry: ['./reactapp'],
 	output: {
 		path: path.resolve(__dirname, './tethysapp/my_react_app/public/frontend'),
 		filename: '[name].js',

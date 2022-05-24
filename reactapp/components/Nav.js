@@ -1,22 +1,20 @@
 import React from 'react';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import BsNav from 'react-bootstrap/Nav';
 
 
-const Nav = ({children, navTitle, onNavChange, navVisible, ...props}) => {
-  const handleClose = () => onNavChange(false);
-
+const A = ({tethysApp}) => {
   return (
     <>
-      <Offcanvas show={navVisible} onHide={handleClose} {...props}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>{navTitle}</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          {children}
-        </Offcanvas.Body>
-      </Offcanvas>
+      <BsNav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
+        <BsNav.Link href={tethysApp.rootUrl}>Home</BsNav.Link>
+        <BsNav.Link eventKey="link-1">Link</BsNav.Link>
+        <BsNav.Link eventKey="link-2">Link</BsNav.Link>
+        <BsNav.Link eventKey="disabled" disabled>
+          Disabled
+        </BsNav.Link>
+      </BsNav>
     </>
   );
-}
+};
 
-export default Nav;
+export default A;

@@ -1,8 +1,9 @@
+import React from 'react';
+import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Navbar from 'react-bootstrap/Navbar';
-import { BsX, BsGear, BsList } from 'react-icons/bs';
-import styled from 'styled-components';
+import { BsX, BsGear } from 'react-icons/bs';
 import HeaderButton from './HeaderButton';
 import NavButton from './NavButton';
 
@@ -26,7 +27,7 @@ const Header = ({tethysApp, onNavChange}) => {
                 src={tethysApp.icon} 
                 width="30" 
                 height="30"
-                className="d-inline-block align-top rounded-circle"
+                className="d-inline-block align-top"
                 alt=""
               />{' ' + tethysApp.title}
             </Navbar.Brand>

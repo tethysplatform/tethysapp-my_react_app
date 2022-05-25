@@ -1,4 +1,5 @@
 import React from 'react';
+import { TethysAppPropType } from './propTypes';
 import GraphicsWindow from './GraphicsWindow';
 
 
@@ -8,6 +9,10 @@ const Content = ({tethysApp}) => {
         <GraphicsWindow tethysApp={tethysApp} />
     </div>
   );
+};
+
+Content.propTypes = {
+  tethysApp: TethysAppPropType,
 };
 
 export default Content;

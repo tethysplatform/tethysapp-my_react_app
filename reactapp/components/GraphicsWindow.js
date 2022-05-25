@@ -1,8 +1,6 @@
 import { React, useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-
 import '@kitware/vtk.js/Rendering/Profiles/Geometry';
-
 import vtkActor from '@kitware/vtk.js/Rendering/Core/Actor';
 import vtkConeSource from '@kitware/vtk.js/Filters/Sources/ConeSource';
 import vtkMapper from '@kitware/vtk.js/Rendering/Core/Mapper';
@@ -31,7 +29,7 @@ const ControlsContainer = styled.div`
 `;
 
 
-const GraphicsWindow = ({ tethysApp }) => {
+const GraphicsWindow = () => {
   const fileInputRef = useRef(null);
   const coneResolutionInputRef = useRef(null);
   const context = useRef(null);
@@ -139,12 +137,12 @@ const GraphicsWindow = ({ tethysApp }) => {
   function handleFileInputChange(event) {
     event.preventDefault();
     if (context.current) {
-      const { camera, mapper, reader, renderer, renderWindow } = context.current;
+      const { mapper, reader, renderer, renderWindow } = context.current;
       const dataTransfer = event.dataTransfer;
       const files = fileInputRef.current.files || dataTransfer.files;
       if (files.length === 1) {
         const fileReader = new FileReader();
-        fileReader.onload = (e) => {
+        fileReader.onload = () => {
           reader.parseAsArrayBuffer(fileReader.result);
           mapper.setInputConnection(reader.getOutputPort());
           renderer.resetCamera();

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -6,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { BsX, BsGear } from 'react-icons/bs';
 import HeaderButton from './HeaderButton';
 import NavButton from './NavButton';
+import { TethysAppPropType } from './propTypes';
 
 
 const StyledNavbar = styled(Navbar)`
@@ -27,7 +29,7 @@ const Header = ({tethysApp, onNavChange}) => {
                 src={tethysApp.icon} 
                 width="30" 
                 height="30"
-                className="d-inline-block align-top"
+                className="d-inline-block align-top rounded-circle"
                 alt=""
               />{' ' + tethysApp.title}
             </Navbar.Brand>
@@ -40,6 +42,11 @@ const Header = ({tethysApp, onNavChange}) => {
       </Container>
     </>
   );
+};
+
+Header.propTypes = {
+  tethysApp: TethysAppPropType,
+  onNavChange: PropTypes.func,
 };
 
 export default Header;

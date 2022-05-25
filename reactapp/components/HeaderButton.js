@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -38,5 +39,12 @@ const HeaderButton = ({children, tooltipPlacement, tooltipText, href, ...props})
   );
   return tooltipText ? styledButtonWithTooltip : styledButton;
 }
+
+HeaderButton.propTypes = {
+  children: PropTypes.element,
+  tooltipPlacement: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
+  tooltipText: PropTypes.string,
+  href: PropTypes.string,
+};
 
 export default HeaderButton

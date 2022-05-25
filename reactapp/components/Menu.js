@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
 
@@ -17,6 +18,16 @@ const Menu = ({children, navTitle, onNavChange, navVisible, ...props}) => {
       </Offcanvas>
     </>
   );
+};
+
+Menu.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element,
+  ]),
+  navTitle: PropTypes.string,
+  onNavChange: PropTypes.func,
+  navVisible: PropTypes.bool,
 };
 
 export default Menu;

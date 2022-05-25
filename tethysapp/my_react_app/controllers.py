@@ -18,7 +18,7 @@ def tethys_data(request):
         'description': app.description,
         'tags': app.tags,
         'package': app.package,
-        'url_namespace': app.url_namespace,
+        'urlNamespace': app.url_namespace,
         'color': app.color,
         'icon': static(app.icon),
         'exitUrl': '/apps/',

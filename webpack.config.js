@@ -8,13 +8,6 @@ module.exports = {
 		filename: '[name].js',
 		publicPath: '/static/my_react_app/frontend/',
 	},
-	resolve: {
-		alias: {
-			'react-dom': 'react-dom/profiling',
-			'scheduler/tracing': 'scheduler/tracing-profiling',
-		},
-		extensions: ['.jsx', '.js'],
-	},
 	module: {
 		rules: [
 			{

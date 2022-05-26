@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Header from './components/Header';
 import Menu from './components/Menu';
@@ -7,14 +7,14 @@ import './App.css';
 
 
 function App() {
-  const [error, setError] = React.useState(null);
-  const [isLoaded, setIsLoaded] = React.useState(false);
-  const [tethysApp, setTethysApp] = React.useState({});
-  const [navVisible, setNavVisible] = React.useState(false);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [tethysApp, setTethysApp] = useState({});
+  const [navVisible, setNavVisible] = useState(false);
 
   // Note: The empty deps array [] means this effect will only run once.
-  React.useEffect(() => {
-    fetch(`${window.location.href}tethys-data/`)
+  useEffect(() => {
+    fetch(`${window.location.href}metadata/`)
       .then(res => res.json())
       .then(
         (result) => {

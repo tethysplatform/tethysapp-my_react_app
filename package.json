@@ -6,23 +6,23 @@
 	"scripts": {
 		"start": "webpack-dev-server --mode development",
 		"build": "webpack --mode production",
-		"lint": "npx eslint reactapp"
+		"lint": "npx eslint reactapp",
+		"test": "jest --config ./jest.config.js",
+		"test:watch": "npm run test -- --watch"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
 		"@babel/core": "^7.16.0",
 		"@babel/plugin-proposal-class-properties": "^7.16.0",
-		"@babel/preset-env": "^7.16.4",
-		"@babel/preset-react": "^7.16.0",
 		"@kitware/vtk.js": "^24.14.0",
 		"babel-loader": "^8.2.3",
 		"bootstrap": "^5.1.3",
 		"css-loader": "^6.5.1",
 		"file-loader": "^6.2.0",
-		"react": "^17.0.2",
+		"react": "^18.0.0",
 		"react-bootstrap": "^2.4.0",
-		"react-dom": "^17.0.2",
+		"react-dom": "^18.0.0",
 		"react-icons": "^4.3.1",
 		"sass": "^1.49.0",
 		"sass-loader": "^12.3.0",
@@ -33,9 +33,17 @@
 		"webpack-dev-server": "^4.6.0"
 	},
 	"devDependencies": {
+		"@babel/preset-env": "^7.18.2",
+		"@babel/preset-react": "^7.17.12",
+		"@testing-library/react": "^13.2.0",
+		"babel-jest": "^28.1.0",
 		"babel-plugin-styled-components": "^2.0.7",
 		"eslint": "^8.16.0",
+		"eslint-plugin-jest": "^26.2.2",
 		"eslint-plugin-react": "^7.30.0",
-		"eslint-plugin-react-hooks": "^4.5.0"
+		"eslint-plugin-react-hooks": "^4.5.0",
+		"jest": "^28.1.0",
+		"jest-environment-jsdom": "^28.1.0",
+		"react-test-renderer": "^18.1.0"
 	}
 }

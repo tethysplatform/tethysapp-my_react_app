@@ -1,6 +1,6 @@
-import { React, useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import '@kitware/vtk.js/Rendering/Profiles/Geometry';
+import {} from '@kitware/vtk.js/Rendering/Profiles/Geometry';
 import vtkActor from '@kitware/vtk.js/Rendering/Core/Actor';
 import vtkConeSource from '@kitware/vtk.js/Filters/Sources/ConeSource';
 import vtkMapper from '@kitware/vtk.js/Rendering/Core/Mapper';
@@ -87,6 +87,7 @@ const GraphicsWindow = () => {
         camera,
         coneSource,
         container,
+        interactor,
         mapper,
         openglRenderWindow,
         reader,
@@ -95,16 +96,37 @@ const GraphicsWindow = () => {
       };
     }
 
-    return function cleanup() {
-      if (context.current) {
-        const { renderWindow, coneSource, actor, mapper } = context.current;
-        actor.delete();
-        mapper.delete();
-        coneSource.delete();
-        renderWindow.delete();
-        context.current = null;
-      }
-    };
+    // This cleanup function breaks with the reloading
+    // See: https://github.com/reactwg/react-18/discussions/19
+    // return function cleanup() {
+    //   if (context.current) {
+    //     const {
+    //       actor,
+    //       camera,
+    //       coneSource,
+    //       container,
+    //       mapper,
+    //       interactor,
+    //       openglRenderWindow,
+    //       reader,
+    //       renderer,
+    //       renderWindow,
+    //     } = context.current;
+
+    //     actor.delete();
+    //     camera.delete();
+    //     coneSource.delete();
+    //     mapper.delete();
+    //     interactor.unbindEvents();
+    //     interactor.delete();
+    //     openglRenderWindow.delete();
+    //     reader.delete();
+    //     renderer.delete();
+    //     renderWindow.delete();
+    //     context.current = null;
+    //     container.innerHtml = "";
+    //   }
+    // };
   }, [vtkContainerRef]);
 
   useEffect(() => {

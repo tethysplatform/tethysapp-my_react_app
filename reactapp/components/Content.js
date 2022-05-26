@@ -1,4 +1,3 @@
-import React from 'react';
 import { TethysAppPropType } from './propTypes';
 import GraphicsWindow from './GraphicsWindow';
 

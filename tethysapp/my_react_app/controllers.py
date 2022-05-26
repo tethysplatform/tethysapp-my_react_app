@@ -11,9 +11,9 @@ def home(request):
     return render(request, 'my_react_app/home.html')
 
 @controller
-def tethys_data(request):
+def metadata(request):
     app = App()
-    data = {
+    metadata = {
         'title': app.name,
         'description': app.description,
         'tags': app.tags,
@@ -24,4 +24,4 @@ def tethys_data(request):
         'exitUrl': '/apps/',
         'rootUrl': reverse(app.index_url),
     }
-    return(JsonResponse(data))
+    return(JsonResponse(metadata))

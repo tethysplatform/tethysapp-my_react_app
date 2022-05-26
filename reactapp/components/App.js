@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
-import Header from './components/Header';
-import Menu from './components/Menu';
-import Content from './components/Content';
+import Header from './Header';
+import Menu from './Menu';
+import Content from './Content';
 import './App.css';
 
 

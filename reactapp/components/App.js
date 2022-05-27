@@ -1,9 +1,10 @@
+import './App.css';
 import { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
-import Header from './Header';
-import Menu from './Menu';
 import Content from './Content';
-import './App.css';
+import Header from './Header';
+import LoadingPage from './Loading';
+import Menu from './Menu';
 
 
 function App() {
@@ -18,15 +19,17 @@ function App() {
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
-          setTethysApp(result);
+          setTimeout(() => {
+            setIsLoaded(true);
+            setTethysApp(result);
+          }, 3000);
         },
         (error) => {
           setIsLoaded(true);
           console.error(error);
           setError(error);
         }
-      )
+      );
   }, []);
 
   if (error) {
@@ -35,23 +38,23 @@ function App() {
     );
   } else if (!isLoaded) {
     return (
-      <div>Loading...</div>
+      <LoadingPage />
     );
   } else {
     return (
       <div className="App">
-          <Header tethysApp={tethysApp} onNavChange={setNavVisible} />
-          <Menu navTitle="Navigation" onNavChange={setNavVisible} navVisible={navVisible}>
-            <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
-              <Nav.Link href={tethysApp.rootUrl}>Home</Nav.Link>
-              <Nav.Link eventKey="link-1">Link</Nav.Link>
-              <Nav.Link eventKey="link-2">Link</Nav.Link>
-              <Nav.Link eventKey="disabled" disabled>
-                Disabled
-              </Nav.Link>
-            </Nav>
-          </Menu>
-          <Content tethysApp={tethysApp} />
+        <Header tethysApp={tethysApp} onNavChange={setNavVisible} />
+        <Menu navTitle="Navigation" onNavChange={setNavVisible} navVisible={navVisible}>
+          <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
+            <Nav.Link href={tethysApp.rootUrl}>Home</Nav.Link>
+            <Nav.Link eventKey="link-1">Link</Nav.Link>
+            <Nav.Link eventKey="link-2">Link</Nav.Link>
+            <Nav.Link eventKey="disabled" disabled>
+              Disabled
+            </Nav.Link>
+          </Nav>
+        </Menu>
+        <Content tethysApp={tethysApp} />
       </div>
     );
   }

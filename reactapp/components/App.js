@@ -22,7 +22,7 @@ function App() {
           setTimeout(() => {
             setIsLoaded(true);
             setTethysApp(result);
-          }, 3000);
+          }, 1000);
         },
         (error) => {
           setIsLoaded(true);

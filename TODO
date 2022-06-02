@@ -1,0 +1,10 @@
+# TODO
+
+[x] Remove VTK and other packages not required by basic project
+[ ] Get Test Working
+[x] Add Error Page
+[x] Set up Authentication w/ Tethys Portal
+[ ] Config file for location of Tethys portal?
+[ ] Create Experimental App Scaffold
+[x] Add app favicon to template
+[ ] Core components in Tethys - tethys command to install local package from Tethys?: https://stackoverflow.com/questions/15806241/how-to-specify-local-modules-as-npm-package-dependencies

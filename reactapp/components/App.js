@@ -5,6 +5,7 @@ import Content from './Content';
 import Header from './Header';
 import LoadingPage from './Loading';
 import Menu from './Menu';
+import Error from './Error';
 
 const TETHYS_APP = process.env.TETHYS_APP;
 const TETHYS_APP_URL = TETHYS_APP.replace('_', '-');
@@ -13,33 +14,103 @@ const LOADING_DELAY = process.env.LOADING_DELAY;
 
 
 function App() {
-  const [error, setError] = useState(null);
+  const [showError, setShowError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [tethysApp, setTethysApp] = useState({});
   const [navVisible, setNavVisible] = useState(false);
+  const [isAuthenticated, setAuthenticated] = useState(false);
+  const [csrf, setCSRF] = useState(null);
+  const [user, setUser] = useState({});
 
-  // Note: The empty deps array [] means this effect will only run once.
+  const handleError = (error) => {
+    if (process.env.DEBUG) {
+      console.log(error);
+    }
+    setTimeout(() => {
+      setShowError(true);
+      setIsLoaded(true);
+    }, LOADING_DELAY);
+  };
+
+  const getSession = () => {
+    return fetch(`${TETHYS_HOST}/api/session/`, {
+      credentials: "include",
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.isAuthenticated) {
+        setAuthenticated(true);
+      } else {
+        // Redirect to Tethys login
+        location.href = `${TETHYS_HOST}/accounts/login?next=${location.pathname}`;
+      }
+    })
+    .catch((error) => handleError(error));
+  };
+
+  const getCSRF = () => {
+    return fetch(`${TETHYS_HOST}/api/csrf/`, {
+      credentials: "include",
+    })
+    .then((response) => {
+      // throw new Error('CSRF exception!');
+      let csrfToken = response.headers.get("X-CSRFToken");
+      setCSRF(csrfToken);
+    })
+    .catch((error) => handleError(error));
+  };
+
+  const getUserData = () => {
+    return fetch(`${TETHYS_HOST}/api/whoami/`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      // throw new Error('User exception!');
+      setUser(data);
+      console.log("You are logged in as: " + data.username);
+    })
+    .catch((error) => handleError(error));
+  };
+
+  const getAppData = () => {
+    return fetch(`${TETHYS_HOST}/api/apps/${TETHYS_APP_URL}/`)
+      .then(response => response.json())
+      .then((data) => {
+        // throw new Error('App exception!');
+        setTethysApp(data);
+      })
+      .catch((error) => handleError(error));
+  };
+  
+  const initApp = () => {
+    // Get the session first
+    getSession()
+      .then(() => {
+        // Then load all other app data
+        const appDataPromise = getAppData();
+        const userDataPromise = getUserData();
+        const csrfPromise = getCSRF();
+        Promise.all([appDataPromise, userDataPromise, csrfPromise])
+          .then(() => {
+            setTimeout(() => {
+              setIsLoaded(true);
+            }, LOADING_DELAY);
+          })
+          .catch((error) => handleError(error));
+      });
+  };
+
   useEffect(() => {
-    fetch(`${window.location.href}metadata/`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setTimeout(() => {
-            setIsLoaded(true);
-            setTethysApp(result);
-          }, 1000);
-        },
-        (error) => {
-          setIsLoaded(true);
-          console.error(error);
-          setError(error);
-        }
-      );
+    initApp();
   }, []);
 
-  if (error) {
+  if (showError) {
     return (
-      <div>Error: {error.message}</div>
+      <Error />
     );
   } else if (!isLoaded) {
     return (
@@ -48,7 +119,7 @@ function App() {
   } else {
     return (
       <div className="App">
-        <Header tethysApp={tethysApp} onNavChange={setNavVisible} />
+        <Header tethysApp={tethysApp} user={user} onNavChange={setNavVisible} />
         <Menu navTitle="Navigation" onNavChange={setNavVisible} navVisible={navVisible}>
           <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
             <Nav.Link href={tethysApp.rootUrl}>Home</Nav.Link>

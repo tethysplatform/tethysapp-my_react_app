@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
 	entry: ['./reactapp'],
@@ -8,6 +9,9 @@ module.exports = {
 		filename: '[name].js',
 		publicPath: '/static/my_react_app/frontend/',
 	},
+	plugins: [
+		new Dotenv(),
+	],
 	module: {
 		rules: [
 			{

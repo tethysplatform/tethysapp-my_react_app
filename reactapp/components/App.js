@@ -6,6 +6,11 @@ import Header from './Header';
 import LoadingPage from './Loading';
 import Menu from './Menu';
 
+const TETHYS_APP = process.env.TETHYS_APP;
+const TETHYS_APP_URL = TETHYS_APP.replace('_', '-');
+const TETHYS_HOST = process.env.TETHYS_HOST;
+const LOADING_DELAY = process.env.LOADING_DELAY;
+
 
 function App() {
   const [error, setError] = useState(null);

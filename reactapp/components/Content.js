@@ -39,7 +39,7 @@ const StyledLink = styled.a`
   color: #61dafb;
 `;
 
-
+// eslint-disable-next-line no-unused-vars
 const Content = ({tethysApp}) => {
   return (
     <ContentDiv className="primary-content-wrapper">

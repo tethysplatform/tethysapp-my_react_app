@@ -48,6 +48,9 @@ const Header = ({tethysApp, user, onNavChange}) => {
 Header.propTypes = {
   tethysApp: TethysAppPropType,
   onNavChange: PropTypes.func,
+  user: PropTypes.shape({
+    isStaff: PropTypes.bool,
+  })
 };
 
 export default Header;

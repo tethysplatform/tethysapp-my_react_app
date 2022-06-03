@@ -3,9 +3,14 @@ import { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Content from './Content';
 import Header from './Header';
-import LoadingPage from './Loading';
+import Loader from './Loader';
 import Menu from './Menu';
 import Error from './Error';
+
+const TETHYS_APP = process.env.TETHYS_APP;
+const TETHYS_APP_URL = TETHYS_APP.replace('_', '-');
+const TETHYS_HOST = process.env.TETHYS_HOST;
+const LOADER_DELAY = process.env.LOADER_DELAY;
 
 
 function App() {
@@ -20,11 +25,6 @@ function App() {
   const [csrf, setCSRF] = useState(null);
 
   useEffect(() => {
-    const TETHYS_APP = process.env.TETHYS_APP;
-    const TETHYS_APP_URL = TETHYS_APP.replace('_', '-');
-    const TETHYS_HOST = process.env.TETHYS_HOST;
-    const LOADING_DELAY = process.env.LOADING_DELAY;
-
     const handleError = (error) => {
       if (process.env.DEBUG) {
         console.log(error);
@@ -32,7 +32,7 @@ function App() {
       setTimeout(() => {
         setShowError(true);
         setIsLoaded(true);
-      }, LOADING_DELAY);
+      }, LOADER_DELAY);
     };
   
     const getSession = () => {
@@ -70,19 +70,14 @@ function App() {
         credentials: "include",
       })
       .then((response) => response.json())
-      .then((data) => {
-        setUser(data);
-        console.log("You are logged in as: " + data.username);
-      })
+      .then((data) => setUser(data))
       .catch((error) => handleError(error));
     };
   
     const getAppData = () => {
       return fetch(`${TETHYS_HOST}/api/apps/${TETHYS_APP_URL}/`)
         .then(response => response.json())
-        .then((data) => {
-          setTethysApp(data);
-        })
+        .then((data) => setTethysApp(data))
         .catch((error) => handleError(error));
     };
     
@@ -95,11 +90,7 @@ function App() {
           const userDataPromise = getUserData();
           const csrfPromise = getCSRF();
           Promise.all([appDataPromise, userDataPromise, csrfPromise])
-            .then(() => {
-              setTimeout(() => {
-                setIsLoaded(true);
-              }, LOADING_DELAY);
-            })
+            .then(() => setTimeout(() => {setIsLoaded(true)}, LOADER_DELAY))
             .catch((error) => handleError(error));
         });
     };
@@ -114,7 +105,7 @@ function App() {
     );
   } else if (!isLoaded) {
     return (
-      <LoadingPage />
+      <Loader />
     );
   } else {
     return (

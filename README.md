@@ -17,7 +17,7 @@ tethys install -d
 ```
 conda install -c conda-forge nodejs
 cd tethysapp-my_react_app
-npm install
+npm install --dev
 ```
 
 ## Development

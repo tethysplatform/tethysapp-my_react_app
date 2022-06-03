@@ -1,8 +1,5 @@
-from django.shortcuts import render, reverse
-from django.http import JsonResponse
-from django.templatetags.static import static
+from django.shortcuts import render
 from tethys_sdk.routing import controller
-from .app import MyReactApp as App
 
 
 @controller

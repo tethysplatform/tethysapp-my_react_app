@@ -56,7 +56,6 @@ function App() {
         credentials: "include",
       })
       .then((response) => {
-        // throw new Error('CSRF exception!');
         let csrfToken = response.headers.get("X-CSRFToken");
         setCSRF(csrfToken);
       })
@@ -72,7 +71,6 @@ function App() {
       })
       .then((response) => response.json())
       .then((data) => {
-        // throw new Error('User exception!');
         setUser(data);
         console.log("You are logged in as: " + data.username);
       })
@@ -83,7 +81,6 @@ function App() {
       return fetch(`${TETHYS_HOST}/api/apps/${TETHYS_APP_URL}/`)
         .then(response => response.json())
         .then((data) => {
-          // throw new Error('App exception!');
           setTethysApp(data);
         })
         .catch((error) => handleError(error));

@@ -10,7 +10,7 @@ class MyReactApp(TethysAppBase):
     description = ''
     package = 'my_react_app'  # WARNING: Do not change this value
     index = 'home'
-    icon = f'{package}/images/icon.gif'
+    icon = f'{package}/images/icon.png'
     root_url = 'my-react-app'
     color = '#c0392b'
     tags = ''

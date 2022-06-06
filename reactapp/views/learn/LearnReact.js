@@ -1,6 +1,8 @@
-import logo from '../assets/logo.svg'
-import { TethysAppPropType } from './propTypes';
 import styled, { keyframes } from 'styled-components';
+
+import { TethysAppPropType } from '../../components/propTypes';
+
+import logo from '../../assets/logo.svg'
 
 const rotate = keyframes`
   from {
@@ -40,27 +42,29 @@ const StyledLink = styled.a`
 `;
 
 // eslint-disable-next-line no-unused-vars
-const Content = ({tethysApp}) => {
+function LearnReactView({tethysApp}) {
   return (
-    <ContentDiv className="primary-content-wrapper">
-      <Rotate><StyledImage src={logo} alt="React logo" /></Rotate>
-        <p>
-          Edit <code>reactapp/components/Content.js</code> and save to reload.
-        </p>
-        <StyledLink
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Click Here to Learn React!
-        </StyledLink>
-    </ContentDiv>
+    <>
+      <ContentDiv className="primary-content-wrapper">
+        <Rotate><StyledImage src={logo} alt="React logo" /></Rotate>
+          <p>
+            Edit <code>reactapp/views/home/Home.js</code> and save to reload.
+          </p>
+          <StyledLink
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Click Here to Learn React!
+          </StyledLink>
+      </ContentDiv>
+    </>
   );
-};
+}
 
-Content.propTypes = {
+LearnReactView.propTypes = {
   tethysApp: TethysAppPropType,
 };
 
-export default Content;
+export default LearnReactView;

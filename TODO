@@ -7,4 +7,5 @@
 [x] Config file for location of Tethys portal?
 [ ] Create Experimental App Scaffold
 [x] Add app favicon to template
+[x] Routing to a non-existing link (/apps/my-react-app/map/)
 [ ] Core components in Tethys - tethys command to install local package from Tethys?: https://stackoverflow.com/questions/15806241/how-to-specify-local-modules-as-npm-package-dependencies

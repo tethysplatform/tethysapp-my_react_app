@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import './Loader.css';
 
+import './Loader.css';
 
 const Loader = ({delay}) => {
   const [ show, setShow ] = useState(false);
@@ -10,7 +11,7 @@ const Loader = ({delay}) => {
     setTimeout(() => {
       setShow(true);
     }, delay);
-  }, []);
+  }, [delay]);
 
   return (
     <>
@@ -40,5 +41,9 @@ const Loader = ({delay}) => {
     </>
   );
 };
+
+Loader.propTypes = {
+  delay: PropTypes.number,
+}
 
 export default Loader;

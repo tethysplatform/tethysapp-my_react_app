@@ -1,11 +1,17 @@
-import './App.css';
 import { useState, useEffect } from 'react';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import Nav from 'react-bootstrap/Nav';
-import Content from './Content';
-import Header from './Header';
-import Loader from './Loader';
-import Menu from './Menu';
-import Error from './Error';
+
+import Error from './components/Error';
+import Loader from './components/Loader';
+import Header from './components/Header';
+import Menu from './components/Menu';
+
+import LearnReactView from './views/learn/LearnReact';
+import MapView from './views/map/MapView';
+
+import './App.css';
 
 const TETHYS_APP = process.env.TETHYS_APP;
 const TETHYS_APP_URL = TETHYS_APP.replace('_', '-');
@@ -109,20 +115,29 @@ function App() {
     );
   } else {
     return (
-      <div className="App">
-        <Header tethysApp={tethysApp} user={user} onNavChange={setNavVisible} />
-        <Menu navTitle="Navigation" onNavChange={setNavVisible} navVisible={navVisible}>
-          <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
-            <Nav.Link href={tethysApp.rootUrl}>Home</Nav.Link>
-            <Nav.Link eventKey="link-1">Link</Nav.Link>
-            <Nav.Link eventKey="link-2">Link</Nav.Link>
-            <Nav.Link eventKey="disabled" disabled>
-              Disabled
-            </Nav.Link>
-          </Nav>
-        </Menu>
-        <Content tethysApp={tethysApp} />
-      </div>
+      <>
+        <HashRouter>
+          <Header tethysApp={tethysApp} user={user} onNavChange={setNavVisible} />
+          <Menu navTitle="Navigation"  navVisible={navVisible} onNavChange={setNavVisible}>
+            <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
+              <LinkContainer to="/">
+                <Nav.Link eventKey="link-map">Home</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/learn-react">
+                <Nav.Link eventKey="link-learn-react">Learn React</Nav.Link>
+              </LinkContainer>
+            </Nav>
+          </Menu>
+          <Routes>
+            <Route path="/" element={
+              <MapView tethysApp={tethysApp} />
+            }/>
+            <Route path="/learn-react" element={
+              <LearnReactView tethysApp={tethysApp} />
+            }/>
+          </Routes>
+        </HashRouter>
+      </>
     );
   }
 }

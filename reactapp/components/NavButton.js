@@ -19,7 +19,7 @@ const StyledButton = styled(Button)`
 
 const NavButton = ({...props}) => {
   return (
-    <StyledButton size="sm" {...props}><BsList size="1.5rem"></BsList></StyledButton>
+    <StyledButton size="sm" aria-label="show navigation" {...props}><BsList size="1.5rem"></BsList></StyledButton>
   );
 };
 

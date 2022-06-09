@@ -12,7 +12,7 @@ cd tethysapp-my_react_app
 tethys install -d
 ```
 
-2. Install the node and depedencies
+2. Install the node and dependencies
 
 ```
 conda install -c conda-forge nodejs
@@ -39,6 +39,17 @@ npm start
 ## Build
 
 Webpack is configured to bundle and build the React app into the `public/frontend` directory. Before building a Python distribution, you should run the `npm run build` to update the build.
+
+## Test
+
+Use the following commands to lint and test the React portion of the app.
+
+```
+npm run lint
+npm run test
+```
+
+The linting capability is powered by [eslint](https://eslint.org/) and a number of plugins for React. The testing capabilities include [jest](https://jestjs.io/), [jsdom](https://github.com/jsdom/jsdom#readme), [testing-framework](https://testing-library.com/), [user-event](https://testing-library.com/docs/user-event/intro/), and a few other JavaScript testing utilties to make it easy to test the frontend of the React-Tethys app.
 
 ## Acknowledgements
 

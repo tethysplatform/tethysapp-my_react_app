@@ -51,7 +51,6 @@ function App() {
           setAuthenticated(true);
         } else {
           // Redirect to Tethys login
-          console.log('Redirecting to login!');
           window.location.assign(`${TETHYS_HOST}/accounts/login?next=${window.location.pathname}`);
         }
       })

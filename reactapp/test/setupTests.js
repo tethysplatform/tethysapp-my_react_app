@@ -3,15 +3,18 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+import { server } from './mocks/server.js';
 
 // Mock `window.location` with Jest spies and extend expect
 import "jest-location-mock";
 
 // Make .env files accessible to tests
-require('dotenv').config();
+require('dotenv').config({ path: './reactapp/test/.env.test'});
 
-// Mock fetch()
-require('jest-fetch-mock').enableMocks();
-fetch.disableMocks();
-
-
+// Setup mocked Tethys API
+beforeAll(() => server.listen());
+// if you need to add a handler after calling setupServer for some specific test
+// this will remove that handler for the rest of them
+// (which is important for test isolation):
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());

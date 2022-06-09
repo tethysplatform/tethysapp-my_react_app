@@ -14,7 +14,7 @@ import MapView from './views/map/MapView';
 import './App.css';
 
 const TETHYS_APP = process.env.TETHYS_APP;
-const TETHYS_APP_URL = TETHYS_APP.replace('_', '-');
+const TETHYS_APP_URL = TETHYS_APP.replaceAll('_', '-');
 const TETHYS_HOST = process.env.TETHYS_HOST;
 const LOADER_DELAY = process.env.LOADER_DELAY;
 

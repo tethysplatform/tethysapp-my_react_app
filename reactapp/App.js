@@ -8,8 +8,8 @@ import Loader from './components/Loader';
 import Header from './components/Header';
 import NavMenu from './components/NavMenu';
 
-import LearnReactView from './views/learn/LearnReactView';
-import MapView from './views/map/MapView';
+import LearnReact from './views/learn/LearnReact';
+import Home from './views/home/Home';
 
 import './App.css';
 
@@ -130,10 +130,10 @@ function App() {
           </NavMenu>
           <Routes>
             <Route path="/" element={
-              <MapView tethysApp={tethysApp} />
+              <Home tethysApp={tethysApp} />
             }/>
             <Route path="/learn-react" element={
-              <LearnReactView tethysApp={tethysApp} />
+              <LearnReact tethysApp={tethysApp} />
             }/>
           </Routes>
         </HashRouter>

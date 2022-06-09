@@ -15,7 +15,7 @@ import { TethysAppPropType } from '../../components/propTypes';
 import 'ol/ol.css';
 
 // eslint-disable-next-line no-unused-vars
-function MapView({tethysApp}) {
+function Home({tethysApp}) {
   const [map, setMap] = useState(null);
   const mapWrapper = useRef();
   const mapRef = useRef();
@@ -82,8 +82,8 @@ function MapView({tethysApp}) {
   );
 }
 
-MapView.propTypes = {
+Home.propTypes = {
   tethysApp: TethysAppPropType,
 };
 
-export default MapView;
+export default Home;

@@ -42,13 +42,13 @@ const StyledLink = styled.a`
 `;
 
 // eslint-disable-next-line no-unused-vars
-function LearnReactView({tethysApp}) {
+function LearnReact({tethysApp}) {
   return (
     <>
       <ContentDiv className="primary-content-wrapper">
         <Rotate><StyledImage src={logo} alt="React logo" /></Rotate>
           <p>
-            Edit <code>reactapp/views/home/Home.js</code> and save to reload.
+            Edit <code>reactapp/views/learn/LearnReact.js</code> and save to reload.
           </p>
           <StyledLink
             className="App-link"
@@ -63,8 +63,8 @@ function LearnReactView({tethysApp}) {
   );
 }
 
-LearnReactView.propTypes = {
+LearnReact.propTypes = {
   tethysApp: TethysAppPropType,
 };
 
-export default LearnReactView;
+export default LearnReact;

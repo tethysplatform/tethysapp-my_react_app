@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react';
 
-import MapView from './MapView';
+import Home from './Home';
 
 it('Component adds map container element.', async () => {
-  render(<MapView />);
+  render(<Home />);
   const mapContainer = await screen.findByTestId('map-container');
   expect(mapContainer).toBeInTheDocument();
 });
 
 it('Has a zoom in and out buttons.', async () => {
-    render(<MapView />);
+    render(<Home />);
     const zoomInButton = await screen.findByRole('button', {'name': '+'});
     const zoomOutButton = await screen.findByRole('button', {'name': '–'});
     expect(zoomInButton).toBeInTheDocument();

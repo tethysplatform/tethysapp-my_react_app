@@ -6,9 +6,9 @@ import Nav from 'react-bootstrap/Nav';
 import Error from './components/Error';
 import Loader from './components/Loader';
 import Header from './components/Header';
-import Menu from './components/Menu';
+import NavMenu from './components/NavMenu';
 
-import LearnReactView from './views/learn/LearnReact';
+import LearnReactView from './views/learn/LearnReactView';
 import MapView from './views/map/MapView';
 
 import './App.css';
@@ -51,7 +51,8 @@ function App() {
           setAuthenticated(true);
         } else {
           // Redirect to Tethys login
-          location.href = `${TETHYS_HOST}/accounts/login?next=${location.pathname}`;
+          console.log('Redirecting to login!');
+          window.location.assign(`${TETHYS_HOST}/accounts/login?next=${window.location.pathname}`);
         }
       })
       .catch((error) => handleError(error));
@@ -118,7 +119,7 @@ function App() {
       <>
         <HashRouter>
           <Header tethysApp={tethysApp} user={user} onNavChange={setNavVisible} />
-          <Menu navTitle="Navigation"  navVisible={navVisible} onNavChange={setNavVisible}>
+          <NavMenu navTitle="Navigation"  navVisible={navVisible} onNavChange={setNavVisible}>
             <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
               <LinkContainer to="/">
                 <Nav.Link eventKey="link-map">Home</Nav.Link>
@@ -127,7 +128,7 @@ function App() {
                 <Nav.Link eventKey="link-learn-react">Learn React</Nav.Link>
               </LinkContainer>
             </Nav>
-          </Menu>
+          </NavMenu>
           <Routes>
             <Route path="/" element={
               <MapView tethysApp={tethysApp} />

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
 
-const Menu = ({children, navTitle, onNavChange, navVisible, ...props}) => {
+const NavMenu = ({children, navTitle, onNavChange, navVisible, ...props}) => {
   const handleClose = () => onNavChange(false);
 
   return (
@@ -19,7 +19,7 @@ const Menu = ({children, navTitle, onNavChange, navVisible, ...props}) => {
   );
 };
 
-Menu.propTypes = {
+NavMenu.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.element,
@@ -29,4 +29,4 @@ Menu.propTypes = {
   navVisible: PropTypes.bool,
 };
 
-export default Menu;
+export default NavMenu;

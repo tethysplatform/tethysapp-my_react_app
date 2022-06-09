@@ -30,6 +30,7 @@ function MapView({tethysApp}) {
     // Create map element
     let mapContainer = document.createElement("div");
     mapContainer.style = "height: calc(100vh - 56px); width: 100%; overflow-y: hidden;";
+    mapContainer.dataset.testid = 'map-container';
     mapWrapper.current.append(mapContainer);
 
     const clydeBldg = new Feature({
@@ -77,7 +78,7 @@ function MapView({tethysApp}) {
   }, []);
 
   return (
-    <div ref={mapWrapper} className="map-wrapper"></div>
+    <div ref={mapWrapper} data-testid="map-wrapper"></div>
   );
 }
 

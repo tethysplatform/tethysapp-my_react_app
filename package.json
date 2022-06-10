@@ -82,7 +82,8 @@
       "plugin:react/jsx-runtime"
     ],
     "ignorePatterns": [
-      "**/transforms/*.js"
+      "**/transforms/*.js",
+      "**/config/*"
     ]
   },
   "jest": {

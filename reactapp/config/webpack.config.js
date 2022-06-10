@@ -5,7 +5,7 @@ const Dotenv = require('dotenv-webpack');
 module.exports = {
 	entry: ['./reactapp'],
 	output: {
-		path: path.resolve(__dirname, './tethysapp/my_react_app/public/frontend'),
+		path: path.resolve(__dirname, '../../tethysapp/my_react_app/public/frontend'),
 		filename: '[name].js',
 		publicPath: '/static/my_react_app/frontend/',
 	},

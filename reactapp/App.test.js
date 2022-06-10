@@ -17,7 +17,7 @@ it('Renders app title', async () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-it('Has two Home and Learn React items in the navigation menu', async () => {
+it('Has Home and Learn React items in the navigation menu', async () => {
   const user = userEvent.setup();
   render(<App />);
   // "find" queries wait until element matching description is found

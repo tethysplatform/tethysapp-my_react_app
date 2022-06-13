@@ -10,7 +10,9 @@ module.exports = {
 		publicPath: '/static/my_react_app/frontend/',
 	},
 	plugins: [
-		new Dotenv(),
+		new Dotenv({
+			path: './reactapp/config/.env'
+		}),
 	],
 	module: {
 		rules: [

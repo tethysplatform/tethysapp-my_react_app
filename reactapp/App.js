@@ -111,7 +111,7 @@ function App() {
     );
   } else {
     return (
-      <>
+      <div>
         <CsrfContext.Provider value={csrf}>
           <TethysAppContext.Provider value={tethysApp}>
             <UserContext.Provider value={user}>
@@ -119,10 +119,10 @@ function App() {
                 <Header onNavChange={setNavVisible} />
                 <NavMenu navTitle="Navigation"  navVisible={navVisible} onNavChange={setNavVisible}>
                   <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
-                    <LinkContainer to="/">
+                    <LinkContainer to="/" onClick={() => setNavVisible(false)}>
                       <Nav.Link eventKey="link-map">Home</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to="/learn-react">
+                    <LinkContainer to="/learn-react" onClick={() => setNavVisible(false)}>
                       <Nav.Link eventKey="link-learn-react">Learn React</Nav.Link>
                     </LinkContainer>
                   </Nav>
@@ -135,7 +135,7 @@ function App() {
             </UserContext.Provider>
           </TethysAppContext.Provider>
         </CsrfContext.Provider>
-      </>
+      </div>
     );
   }
 }

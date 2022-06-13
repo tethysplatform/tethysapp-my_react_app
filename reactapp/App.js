@@ -10,6 +10,7 @@ import NavMenu from './components/NavMenu';
 
 import LearnReact from './views/learn/LearnReact';
 import Home from './views/home/Home';
+import { CsrfContext, TethysAppContext, UserContext } from './context';
 
 import './App.css';
 
@@ -25,9 +26,6 @@ function App() {
   const [tethysApp, setTethysApp] = useState({});
   const [navVisible, setNavVisible] = useState(false);
   const [user, setUser] = useState({});
-  // eslint-disable-next-line no-unused-vars
-  const [isAuthenticated, setAuthenticated] = useState(false);
-  // eslint-disable-next-line no-unused-vars
   const [csrf, setCSRF] = useState(null);
 
   useEffect(() => {
@@ -47,9 +45,7 @@ function App() {
       })
       .then((response) => response.json())
       .then((data) => {
-        if (data.isAuthenticated) {
-          setAuthenticated(true);
-        } else {
+        if (!data.isAuthenticated) {
           // Redirect to Tethys login
           window.location.assign(`${TETHYS_HOST}/accounts/login?next=${window.location.pathname}`);
         }
@@ -116,27 +112,29 @@ function App() {
   } else {
     return (
       <>
-        <HashRouter>
-          <Header tethysApp={tethysApp} user={user} onNavChange={setNavVisible} />
-          <NavMenu navTitle="Navigation"  navVisible={navVisible} onNavChange={setNavVisible}>
-            <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
-              <LinkContainer to="/">
-                <Nav.Link eventKey="link-map">Home</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/learn-react">
-                <Nav.Link eventKey="link-learn-react">Learn React</Nav.Link>
-              </LinkContainer>
-            </Nav>
-          </NavMenu>
-          <Routes>
-            <Route path="/" element={
-              <Home tethysApp={tethysApp} />
-            }/>
-            <Route path="/learn-react" element={
-              <LearnReact tethysApp={tethysApp} />
-            }/>
-          </Routes>
-        </HashRouter>
+        <CsrfContext.Provider value={csrf}>
+          <TethysAppContext.Provider value={tethysApp}>
+            <UserContext.Provider value={user}>
+              <HashRouter>
+                <Header onNavChange={setNavVisible} />
+                <NavMenu navTitle="Navigation"  navVisible={navVisible} onNavChange={setNavVisible}>
+                  <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
+                    <LinkContainer to="/">
+                      <Nav.Link eventKey="link-map">Home</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/learn-react">
+                      <Nav.Link eventKey="link-learn-react">Learn React</Nav.Link>
+                    </LinkContainer>
+                  </Nav>
+                </NavMenu>
+                <Routes>
+                  <Route path="/" element={<Home />}/>
+                  <Route path="/learn-react" element={<LearnReact />}/>
+                </Routes>
+              </HashRouter>
+            </UserContext.Provider>
+          </TethysAppContext.Provider>
+        </CsrfContext.Provider>
       </>
     );
   }

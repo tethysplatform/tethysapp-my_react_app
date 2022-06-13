@@ -1,8 +1,10 @@
 import styled, { keyframes } from 'styled-components';
+import Color from 'color';
+import { useContext } from 'react';
 
-import { TethysAppPropType } from '../../components/propTypes';
+import { TethysAppContext } from '../../context';
 
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/logo.svg';
 
 const rotate = keyframes`
   from {
@@ -28,7 +30,6 @@ const ContentDiv = styled.div`
   color: white;
   text-align: center;
   font-size: calc(10px + 2vmin);
-  background-color: #282c34;
   min-height: calc(100vh - 56px);
   display: flex;
   flex-direction: column;
@@ -41,11 +42,15 @@ const StyledLink = styled.a`
   color: #61dafb;
 `;
 
-// eslint-disable-next-line no-unused-vars
-function LearnReact({tethysApp}) {
+function LearnReact() {
+  const tethysApp = useContext(TethysAppContext);
+
   return (
     <div>
-      <ContentDiv className="primary-content-wrapper">
+      <ContentDiv className="primary-content-wrapper" 
+        style={{
+          backgroundColor: Color(tethysApp.color).darken(0.8) || "#282c34"
+        }}>
         <Rotate><StyledImage src={logo} alt="React logo" /></Rotate>
           <p>
             Edit <code>reactapp/views/learn/LearnReact.js</code> and save to reload.
@@ -62,9 +67,5 @@ function LearnReact({tethysApp}) {
     </div>
   );
 }
-
-LearnReact.propTypes = {
-  tethysApp: TethysAppPropType,
-};
 
 export default LearnReact;

@@ -1,14 +1,15 @@
-import { BsX, BsGear } from 'react-icons/bs';
-import { LinkContainer } from 'react-router-bootstrap';
+import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Navbar from 'react-bootstrap/Navbar';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { useContext } from 'react';
+import { BsX, BsGear } from 'react-icons/bs';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import HeaderButton from './HeaderButton';
 import NavButton from './NavButton';
-import { TethysAppPropType } from './propTypes';
+import { TethysAppContext, UserContext } from '../context';
 
 
 const StyledNavbar = styled(Navbar)`
@@ -16,7 +17,9 @@ const StyledNavbar = styled(Navbar)`
 `;
 
 
-const Header = ({tethysApp, user, onNavChange}) => {
+const Header = ({onNavChange}) => {
+  const tethysApp = useContext(TethysAppContext);
+  const user = useContext(UserContext);
   const showNav = () => onNavChange(true);
 
   return (
@@ -50,11 +53,7 @@ const Header = ({tethysApp, user, onNavChange}) => {
 };
 
 Header.propTypes = {
-  tethysApp: TethysAppPropType,
   onNavChange: PropTypes.func,
-  user: PropTypes.shape({
-    isStaff: PropTypes.bool,
-  })
 };
 
 export default Header;

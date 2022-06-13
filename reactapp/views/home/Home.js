@@ -11,14 +11,11 @@ import View from 'ol/View';
 import { Circle, Fill, Stroke, Style } from 'ol/style';
 import { Vector as VectorLayer } from 'ol/layer';
 import { fromLonLat } from 'ol/proj';
-import { useState, useEffect, useRef } from 'react';
-
-import { TethysAppPropType } from '../../components/propTypes';
+import { useEffect, useRef, useState } from 'react';
 
 import 'ol/ol.css';
 
-// eslint-disable-next-line no-unused-vars
-function Home({tethysApp}) {
+function Home() {
   const [map, setMap] = useState(null);
   const mapWrapperRef = useRef();
   const mapRef = useRef();
@@ -36,6 +33,8 @@ function Home({tethysApp}) {
     mapContainer.style = "height: calc(100vh - 56px); width: 100%; overflow-y: hidden;";
     mapContainer.dataset.testid = 'map-container';
     mapWrapperRef.current.append(mapContainer);
+    
+    // Create a point on the Clyde Building at BYU
     const cldBldgCoord = fromLonLat([-111.648149, 40.247094]);
     const clydeBldg = new Feature({
       geometry: new Point(cldBldgCoord),
@@ -64,7 +63,6 @@ function Home({tethysApp}) {
       source: vectorSource,
     });
 
-    
     const initialMap = new Map({
       target: mapContainer,
       layers: [
@@ -107,6 +105,7 @@ function Home({tethysApp}) {
     // Create popup when selected / hide when not selected
     selectInteraction.on('select', (evt) => {
       const pos = evt.selected.length > 0 ? cldBldgCoord : null;
+      popupRef.current.classList.remove('d-none');
       popup.setPosition(pos);
     });
   
@@ -116,7 +115,7 @@ function Home({tethysApp}) {
   return (
     <div>
       <div ref={mapWrapperRef} data-testid="map-wrapper"></div>
-      <div ref={popupRef} data-testid="map-popup">
+      <div ref={popupRef} data-testid="map-popup" className="d-none">
         <Card style={{ width: '18rem' }}>
           <Card.Body>
             <Card.Title>Birthplace of Tethys Platform</Card.Title>
@@ -127,9 +126,5 @@ function Home({tethysApp}) {
     </div>
   );
 }
-
-Home.propTypes = {
-  tethysApp: TethysAppPropType,
-};
 
 export default Home;

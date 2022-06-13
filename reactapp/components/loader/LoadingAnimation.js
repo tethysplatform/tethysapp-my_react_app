@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
-import './Loader.css';
+import './LoadingAnimation.css';
 
-const Loader = ({delay}) => {
+const LoadingAnimation = ({delay}) => {
   const [ show, setShow ] = useState(false);
 
   useEffect(() => {
@@ -42,8 +42,8 @@ const Loader = ({delay}) => {
   );
 };
 
-Loader.propTypes = {
+LoadingAnimation.propTypes = {
   delay: PropTypes.number,
 }
 
-export default Loader;
+export default LoadingAnimation;

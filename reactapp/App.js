@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
-import Nav from 'react-bootstrap/Nav';
 
-import Error from './components/Error';
-import Loader from './components/Loader';
-import Header from './components/Header';
-import NavMenu from './components/NavMenu';
+import Layout from './components/layout/Layout';
+import LoadingAnimation from './components/loader/LoadingAnimation';
+import LoadingError from './components/loader/LoadingError';
 
 import LearnReact from './views/learn/LearnReact';
 import Home from './views/home/Home';
@@ -24,7 +21,6 @@ function App() {
   const [showError, setShowError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [tethysApp, setTethysApp] = useState({});
-  const [navVisible, setNavVisible] = useState(false);
   const [user, setUser] = useState({});
   const [csrf, setCSRF] = useState(null);
 
@@ -103,37 +99,28 @@ function App() {
 
   if (showError) {
     return (
-      <Error />
+      <LoadingError />
     );
   } else if (!isLoaded) {
     return (
-      <Loader />
+      <LoadingAnimation />
     );
   } else {
     return (
       <div>
         <CsrfContext.Provider value={csrf}>
-          <TethysAppContext.Provider value={tethysApp}>
-            <UserContext.Provider value={user}>
-              <HashRouter>
-                <Header onNavChange={setNavVisible} />
-                <NavMenu navTitle="Navigation"  navVisible={navVisible} onNavChange={setNavVisible}>
-                  <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
-                    <LinkContainer to="/" onClick={() => setNavVisible(false)}>
-                      <Nav.Link eventKey="link-map">Home</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to="/learn-react" onClick={() => setNavVisible(false)}>
-                      <Nav.Link eventKey="link-learn-react">Learn React</Nav.Link>
-                    </LinkContainer>
-                  </Nav>
-                </NavMenu>
-                <Routes>
-                  <Route path="/" element={<Home />}/>
-                  <Route path="/learn-react" element={<LearnReact />}/>
-                </Routes>
-              </HashRouter>
-            </UserContext.Provider>
-          </TethysAppContext.Provider>
+        <TethysAppContext.Provider value={tethysApp}>
+        <UserContext.Provider value={user}>
+          <HashRouter>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />}/>
+                <Route path="/learn-react" element={<LearnReact />}/>
+              </Routes>
+            </Layout>
+          </HashRouter>
+        </UserContext.Provider>
+        </TethysAppContext.Provider>
         </CsrfContext.Provider>
       </div>
     );

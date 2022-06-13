@@ -1,15 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import styled from 'styled-components';
 
+import errorImage from '../../assets/error.png';
+
 const TETHYS_HOST = process.env.TETHYS_HOST;
 
-const BackgroundImage = styled.div`
+const ErrorBackgroundImage = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background-image: url(${TETHYS_HOST}/static/tethys_portal/images/error_500.png);
   background-repeat: no-repeat;
   background-position: center;
   opacity: 50%;
@@ -37,10 +38,10 @@ const ErrorMessage = styled.p`
   font-size: 20pt;
 `;
 
-const ErrorPage = () => {
+const LoadingError = () => {
   return (
     <>
-      <BackgroundImage />
+      <ErrorBackgroundImage style={{ backgroundImage: `url(${errorImage})` }}/>
       <ErrorMessageContainer>
         <ErrorMessageBox className="px-5 py-3 shadow rounded">
           <ErrorTitle>Whoops!</ErrorTitle>
@@ -52,4 +53,4 @@ const ErrorPage = () => {
   );
 };
 
-export default ErrorPage;
+export default LoadingError;

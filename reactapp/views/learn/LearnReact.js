@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import Color from 'color';
 import { useContext } from 'react';
 
-import { TethysAppContext } from '../../context';
+import { TethysAppContext } from '../../components/context';
 
 import logo from '../../assets/logo.svg';
 

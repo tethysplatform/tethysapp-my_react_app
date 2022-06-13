@@ -1,9 +1,9 @@
+import Card from 'react-bootstrap/Card';
 import Feature from 'ol/Feature';
 import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
 import Overlay from 'ol/Overlay';
 import Point from 'ol/geom/Point';
-import Popover from 'react-bootstrap/Popover';
 import Select from 'ol/interaction/Select';
 import TileLayer from 'ol/layer/Tile';
 import VectorSource from 'ol/source/Vector';
@@ -20,7 +20,6 @@ import 'ol/ol.css';
 // eslint-disable-next-line no-unused-vars
 function Home({tethysApp}) {
   const [map, setMap] = useState(null);
-  const [showPopover, setShowPopover] = useState(false);
   const mapWrapperRef = useRef();
   const mapRef = useRef();
   const popupRef = useRef();
@@ -37,9 +36,9 @@ function Home({tethysApp}) {
     mapContainer.style = "height: calc(100vh - 56px); width: 100%; overflow-y: hidden;";
     mapContainer.dataset.testid = 'map-container';
     mapWrapperRef.current.append(mapContainer);
-
+    const cldBldgCoord = fromLonLat([-111.648149, 40.247094]);
     const clydeBldg = new Feature({
-      geometry: new Point(fromLonLat([-111.648149, 40.247094])),
+      geometry: new Point(cldBldgCoord),
     });
 
     clydeBldg.setStyle(
@@ -65,7 +64,7 @@ function Home({tethysApp}) {
       source: vectorSource,
     });
 
-    const cldBldgCoord = [-12428615.094691524, 4901914.543610684];
+    
     const initialMap = new Map({
       target: mapContainer,
       layers: [
@@ -75,8 +74,7 @@ function Home({tethysApp}) {
         vectorLayer,
       ],
       view: new View({
-        // Birth place of Tethys Platform
-        center: cldBldgCoord,  // EPSG:3857
+        center: cldBldgCoord,
         zoom: 5,
       }),
     });
@@ -101,14 +99,14 @@ function Home({tethysApp}) {
     // Initialize popup
     const popup = new Overlay({
       element: popupRef.current,
-      positioning: 'top-center',
+      positioning: 'bottom-center',
+      offset: [0, -15],
     });
     initialMap.addOverlay(popup);
 
-    // Create popup when selected
+    // Create popup when selected / hide when not selected
     selectInteraction.on('select', (evt) => {
       const pos = evt.selected.length > 0 ? cldBldgCoord : null;
-      setShowPopover(evt.selected.length > 0);
       popup.setPosition(pos);
     });
   
@@ -116,15 +114,17 @@ function Home({tethysApp}) {
   }, []);
 
   return (
-    <>
+    <div>
       <div ref={mapWrapperRef} data-testid="map-wrapper"></div>
       <div ref={popupRef} data-testid="map-popup">
-        <Popover show={showPopover} placement="top-end">
-          <Popover.Header as="h3">Birthplace of Tethys Platform</Popover.Header>
-          <Popover.Body style={{minWidth: "250px"}}>BYU Clyde Engineering Building circa 2012</Popover.Body>
-        </Popover>
+        <Card style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title>Birthplace of Tethys Platform</Card.Title>
+            <Card.Text>BYU Clyde Engineering Building circa 2012.</Card.Text>
+          </Card.Body>
+        </Card>
       </div>
-    </>
+    </div>
   );
 }
 

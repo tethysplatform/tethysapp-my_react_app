@@ -44,7 +44,7 @@ const StyledLink = styled.a`
 // eslint-disable-next-line no-unused-vars
 function LearnReact({tethysApp}) {
   return (
-    <>
+    <div>
       <ContentDiv className="primary-content-wrapper">
         <Rotate><StyledImage src={logo} alt="React logo" /></Rotate>
           <p>
@@ -59,7 +59,7 @@ function LearnReact({tethysApp}) {
             Click Here to Learn React!
           </StyledLink>
       </ContentDiv>
-    </>
+    </div>
   );
 }
 

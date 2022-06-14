@@ -38,8 +38,12 @@ const ContentDiv = styled.div`
   overflow: hidden;
 `;
 
-const StyledLink = styled.a`
+const ReactLink = styled.a`
   color: #61dafb;
+  
+  &:hover {
+    color: ${Color("#61dafb").darken(0.5)};
+  }
 `;
 
 function LearnReact() {
@@ -47,7 +51,8 @@ function LearnReact() {
 
   return (
     <div>
-      <ContentDiv className="primary-content-wrapper" 
+      <ContentDiv 
+        className="primary-content-wrapper" 
         style={{
           backgroundColor: Color(tethysApp.color).darken(0.8) || "#282c34"
         }}>
@@ -55,14 +60,14 @@ function LearnReact() {
           <p>
             Edit <code>reactapp/views/learn/LearnReact.js</code> and save to reload.
           </p>
-          <StyledLink
+          <ReactLink
             className="App-link"
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
           >
             Click Here to Learn React!
-          </StyledLink>
+          </ReactLink>
       </ContentDiv>
     </div>
   );

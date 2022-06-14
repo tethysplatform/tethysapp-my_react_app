@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,12 +10,6 @@ import HeaderButton from '../buttons/HeaderButton';
 import NavButton from '../buttons/NavButton';
 import { TethysAppContext, UserContext } from '../context';
 
-
-const StyledNavbar = styled(Navbar)`
-  background-color: ${props => props.navcolor || 'black'};
-`;
-
-
 const Header = ({onNavChange}) => {
   const tethysApp = useContext(TethysAppContext);
   const user = useContext(UserContext);
@@ -25,7 +18,7 @@ const Header = ({onNavChange}) => {
   return (
     <>
       <Container fluid className="px-0">
-        <StyledNavbar navcolor={tethysApp.color} expand="lg" variant="dark" className="shadow">
+        <Navbar expand="lg" bg="primary" variant="dark" className="shadow">
           <Container fluid className="px-4">
             <NavButton onClick={showNav} className="me-2"></NavButton>
             <LinkContainer to="/">
@@ -46,7 +39,7 @@ const Header = ({onNavChange}) => {
               <HeaderButton href={tethysApp.exitUrl} tooltipPlacement="bottom" tooltipText="Exit"><BsX size="1.5rem"/></HeaderButton>
             </Form>
           </Container>
-        </StyledNavbar>
+        </Navbar>
       </Container>
     </>
   );

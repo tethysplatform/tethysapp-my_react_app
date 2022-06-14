@@ -6,7 +6,7 @@ import Loader from './components/loader/Loader';
 import LearnReact from './views/learn/LearnReact';
 import Home from './views/home/Home';
 
-import './App.css';
+import './App.scss';
 
 function App() {
   return (

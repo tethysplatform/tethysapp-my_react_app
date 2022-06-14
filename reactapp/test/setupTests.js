@@ -9,7 +9,7 @@ import { server } from './mocks/server.js';
 import "jest-location-mock";
 
 // Make .env files accessible to tests
-require('dotenv').config({ path: './reactapp/test/.env.test'});
+require('dotenv').config({ path: './reactapp/test/test.env'});
 
 // Setup mocked Tethys API
 beforeAll(() => server.listen());

@@ -49,6 +49,8 @@ const ReactLink = styled.a`
 function LearnReact() {
   const tethysApp = useContext(TethysAppContext);
 
+  // throw 'This is an unhandled error!';
+
   return (
     <div>
       <ContentDiv 

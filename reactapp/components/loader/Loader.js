@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import LoadingAnimation from './LoadingAnimation';
-import LoadingError from './LoadingError';
+import PrettyError from '../error/PrettyError';
 
 import { CsrfContext, TethysAppContext, UserContext } from '../context';
 
 const TETHYS_APP = process.env.TETHYS_APP;
 const TETHYS_APP_URL = TETHYS_APP.replaceAll('_', '-');
 const TETHYS_HOST = process.env.TETHYS_HOST;
-const LOADER_DELAY = process.env.LOADER_DELAY;
+const TETHYS_LOADER_DELAY = process.env.TETHYS_LOADER_DELAY;
 
 
 function Loader({children}) {
@@ -21,13 +21,13 @@ function Loader({children}) {
 
   useEffect(() => {
     const handleError = (error) => {
-      if (process.env.DEBUG) {
+      if (process.env.TETHYS_DEBUG === 'true') {
         console.log(error);
       }
       setTimeout(() => {
         setShowError(true);
         setIsLoaded(true);
-      }, LOADER_DELAY);
+      }, TETHYS_LOADER_DELAY);
     };
   
     const getSession = () => {
@@ -82,14 +82,14 @@ function Loader({children}) {
         const userDataPromise = getUserData();
         const csrfPromise = getCSRF();
         Promise.all([appDataPromise, userDataPromise, csrfPromise])
-          .then(() => setTimeout(() => {setIsLoaded(true)}, LOADER_DELAY))
+          .then(() => setTimeout(() => {setIsLoaded(true)}, TETHYS_LOADER_DELAY))
           .catch((error) => handleError(error));
       });
   }, []);
 
   if (showError) {
     return (
-      <LoadingError />
+      <PrettyError />
     );
   } else if (!isLoaded) {
     return (

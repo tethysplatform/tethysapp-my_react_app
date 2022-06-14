@@ -38,7 +38,7 @@ const ErrorMessage = styled.p`
   font-size: 20pt;
 `;
 
-const LoadingError = () => {
+const PrettyError = () => {
   return (
     <>
       <ErrorBackgroundImage style={{ backgroundImage: `url(${errorImage})` }}/>
@@ -53,4 +53,4 @@ const LoadingError = () => {
   );
 };
 
-export default LoadingError;
+export default PrettyError;

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { TethysAppContext } from '../../context';
+import { TethysAppContext } from '../../components/context';
 
 import LearnReact from './LearnReact';
 

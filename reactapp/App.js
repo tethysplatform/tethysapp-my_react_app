@@ -1,5 +1,6 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
+import ErrorBoundary from './components/error/ErrorBoundary';
 import Layout from './components/layout/Layout';
 import Loader from './components/loader/Loader';
 
@@ -10,18 +11,20 @@ import './App.scss';
 
 function App() {
   return (
-    <div>
-      <Loader>
+    <>
+      <ErrorBoundary>
         <HashRouter>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Home />}/>
-              <Route path="/learn-react" element={<LearnReact />}/>
-            </Routes>
-          </Layout>
+          <Loader>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />}/>
+                <Route path="/learn-react" element={<LearnReact />}/>
+              </Routes>
+            </Layout>
+          </Loader>
         </HashRouter>
-      </Loader>
-    </div>
+      </ErrorBoundary>
+    </>
   );
 }
 

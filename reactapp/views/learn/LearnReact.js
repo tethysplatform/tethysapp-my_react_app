@@ -48,12 +48,9 @@ const ReactLink = styled.a`
 
 function LearnReact() {
   const tethysApp = useContext(TethysAppContext);
-
-  // throw 'This is an unhandled error!';
-
   return (
     <div>
-      <ContentDiv 
+      <ContentDiv
         className="primary-content-wrapper" 
         style={{
           backgroundColor: Color(tethysApp.color).darken(0.8) || "#282c34"

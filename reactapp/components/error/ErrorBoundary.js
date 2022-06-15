@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 
+import DebugError from './DebugError';
 import PrettyError from "./PrettyError";
 
 class ErrorBoundary extends React.Component {
@@ -24,24 +25,16 @@ class ErrorBoundary extends React.Component {
   }
 
   render() {
-    const TETHYS_DEBUG = process.env.TETHYS_DEBUG === 'true';
+    const DEBUG_MODE = process.env.TETHYS_DEBUG === 'true';
     if (this.state.hasError) {
-      if (!TETHYS_DEBUG) {
-        return (
-          <PrettyError />
-        );
-      } else {
-        return (
-          <div>
-            <h2>Something went wrongsies. ({ TETHYS_DEBUG })</h2>
-            <details style={{ whiteSpace: 'pre-wrap' }}>
-              {this.state.error && this.state.error.toString()}
-              <br />
-              {this.state.errorInfo.componentStack}
-            </details>
-          </div>
-        );
-      }
+      return !DEBUG_MODE ? (
+        <PrettyError />
+      ) : (
+        <DebugError 
+          error={this.state.error}
+          errorInfo={this.state.errorInfo} 
+        />
+      )
     }
     return this.props.children;
   }

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import LoadingAnimation from './LoadingAnimation';
-import PrettyError from '../error/PrettyError';
 
 import { CsrfContext, TethysAppContext, UserContext } from '../context';
 
@@ -13,7 +12,7 @@ const TETHYS_LOADER_DELAY = process.env.TETHYS_LOADER_DELAY;
 
 
 function Loader({children}) {
-  const [showError, setShowError] = useState(false);
+  const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [tethysApp, setTethysApp] = useState({});
   const [user, setUser] = useState({});
@@ -21,12 +20,9 @@ function Loader({children}) {
 
   useEffect(() => {
     const handleError = (error) => {
-      if (process.env.TETHYS_DEBUG === 'true') {
-        console.log(error);
-      }
+      // Delay setting the error to avoid flashing the loading animation
       setTimeout(() => {
-        setShowError(true);
-        setIsLoaded(true);
+        setError(error);
       }, TETHYS_LOADER_DELAY);
     };
   
@@ -87,10 +83,9 @@ function Loader({children}) {
       });
   }, []);
 
-  if (showError) {
-    return (
-      <PrettyError />
-    );
+  if (error) {
+    // Throw error so it will be caught by the ErrorBoundary
+    throw error;
   } else if (!isLoaded) {
     return (
       <LoadingAnimation />

@@ -1,8 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import Color from 'color';
-import { useContext } from 'react';
-
-import { AppContext } from 'components/context';
+import { useMemo } from 'react';
 
 import logo from 'assets/reactLogo.svg';
 
@@ -47,14 +45,15 @@ const ReactLink = styled.a`
 `;
 
 function LearnReact() {
-  const {tethysApp} = useContext(AppContext);
+  // The app theme color is set as --bs-primary variable through custom-bootstrap.scss
+  const appColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-primary');
+  const darkAppColor = useMemo(() => Color(appColor.trim()).darken(0.8), [appColor]);
+
   return (
     <div>
       <ContentDiv
         className="primary-content-wrapper" 
-        style={{
-          backgroundColor: Color(tethysApp.color).darken(0.8) || "#282c34"
-        }}>
+        style={{ backgroundColor: darkAppColor }}>
         <Rotate><StyledImage src={logo} alt="React logo" /></Rotate>
           <p>
             Edit <code>reactapp/views/learn/LearnReact.js</code> and save to reload.

@@ -12,7 +12,7 @@ class MyReactApp(TethysAppBase):
     icon = f'{package}/images/icon.png'
     catch_all = 'home'  # Catch all url mapped to home controller, required for react browser routing
     root_url = 'my-react-app'
-    color = '#c0392b'
+    color = ''  # Don't set color here, set it in reactapp/custom-bootstrap.scss
     tags = ''
     enable_feedback = False
     feedback_emails = []

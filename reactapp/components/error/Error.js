@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 
-import { TethysAppContext } from '../context';
+import { TethysAppContext } from 'components/context';
 
 const TETHYS_HOST = process.env.TETHYS_HOST;
 

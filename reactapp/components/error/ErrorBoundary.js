@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from "react";
 
-import DebugError from './DebugError';
-import GenericError from "./GenericError";
+import DebugError from 'components/error/DebugError';
+import GenericError from "components/error/GenericError";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {

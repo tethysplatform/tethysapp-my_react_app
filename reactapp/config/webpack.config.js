@@ -13,6 +13,12 @@ module.exports = (env, argv) => {
 			filename: '[name].js',
 			publicPath: '/static/my_react_app/frontend/',
 		},
+		resolve: {
+			modules: [
+				path.resolve(__dirname, '../'), 
+				path.resolve(__dirname, '../../node_modules')
+			]
+		},
 		plugins: [
 			new Dotenv({
 				path: dotEnvPath

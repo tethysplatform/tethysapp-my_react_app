@@ -1,14 +1,14 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
-import ErrorBoundary from './components/error/ErrorBoundary';
-import Layout from './components/layout/Layout';
-import Loader from './components/loader/Loader';
-import NotFound from './components/error/NotFound';
+import ErrorBoundary from 'components/error/ErrorBoundary';
+import Layout from 'components/layout/Layout';
+import Loader from 'components/loader/Loader';
+import NotFound from 'components/error/NotFound';
 
-import LearnReact from './views/learn/LearnReact';
-import Home from './views/home/Home';
+import Home from 'views/home/Home';
+import LearnReact from 'views/learn/LearnReact';
 
-import './App.scss';
+import 'App.scss';
 
 function App() {
   return (

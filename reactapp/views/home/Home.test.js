@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import Home from './Home';
+import Home from 'views/home/Home';
 
 it('Component adds map container element.', async () => {
   render(<Home />);

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { useState, useContext } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 
-import Header from './Header';
-import NavMenu from './NavMenu';
-import { TethysAppContext } from '../context';
+import Header from 'components/layout/Header';
+import NavMenu from 'components/layout/NavMenu';
+import { TethysAppContext } from 'components/context';
 
 function Layout({children}) {
   const tethysApp = useContext(TethysAppContext);

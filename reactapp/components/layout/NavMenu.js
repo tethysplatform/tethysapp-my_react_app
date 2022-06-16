@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import PropTypes from 'prop-types';
 
 
 const NavMenu = ({children, navTitle, onNavChange, navVisible, ...props}) => {

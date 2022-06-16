@@ -6,9 +6,9 @@ import { useContext } from 'react';
 import { BsX, BsGear } from 'react-icons/bs';
 import { LinkContainer } from 'react-router-bootstrap';
 
-import HeaderButton from '../buttons/HeaderButton';
-import NavButton from '../buttons/NavButton';
-import { TethysAppContext, UserContext } from '../context';
+import HeaderButton from 'components/buttons/HeaderButton';
+import NavButton from 'components/buttons/NavButton';
+import { TethysAppContext, UserContext } from 'components/context';
 
 const Header = ({onNavChange}) => {
   const tethysApp = useContext(TethysAppContext);

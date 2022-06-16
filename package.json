@@ -132,7 +132,10 @@
     "moduleDirectories": [
       "node_modules"
     ],
-    "modulePaths": [],
+    "modulePaths": [
+      "<rootDir>/reactapp",
+      "<rootDir>/node_modules"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/reactapp/test/mocks/fileMock.js",
       "^.+\\.module\\.(css|sass|scss|less)$": "identity-obj-proxy",

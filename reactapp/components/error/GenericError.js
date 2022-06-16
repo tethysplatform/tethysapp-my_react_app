@@ -1,5 +1,6 @@
-import errorImage from '../../assets/error.png';
-import Error from './Error';
+import Error from 'components/error/Error';
+
+import errorImage from 'assets/error.png';
 
 const GenericError = () => {
   return (

@@ -2,9 +2,9 @@ import styled, { keyframes } from 'styled-components';
 import Color from 'color';
 import { useContext } from 'react';
 
-import { TethysAppContext } from '../../components/context';
+import { TethysAppContext } from 'components/context';
 
-import logo from '../../assets/logo.svg';
+import logo from 'assets/reactLogo.svg';
 
 const rotate = keyframes`
   from {

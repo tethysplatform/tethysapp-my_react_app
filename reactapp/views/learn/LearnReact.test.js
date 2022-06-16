@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
-import { TethysAppContext } from '../../components/context';
+import { TethysAppContext } from 'components/context';
 
-import LearnReact from './LearnReact';
+import LearnReact from 'views/learn/LearnReact';
 
 it('Renders the learn more react link', () => {
   render(<TethysAppContext.Provider value={{color: "#ff9900"}}><LearnReact /></TethysAppContext.Provider>);

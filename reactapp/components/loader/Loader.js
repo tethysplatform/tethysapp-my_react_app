@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
-import LoadingAnimation from './LoadingAnimation';
-
-import { CsrfContext, TethysAppContext, UserContext } from '../context';
+import LoadingAnimation from 'components/loader/LoadingAnimation';
+import { CsrfContext, TethysAppContext, UserContext } from 'components/context';
 
 const TETHYS_APP = process.env.TETHYS_APP;
 const TETHYS_APP_URL = TETHYS_APP.replaceAll('_', '-');

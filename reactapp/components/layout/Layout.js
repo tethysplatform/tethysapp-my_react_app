@@ -19,6 +19,9 @@ function Layout({children}) {
           <LinkContainer to="/" onClick={() => setNavVisible(false)}>
             <Nav.Link eventKey="link-map">Home</Nav.Link>
           </LinkContainer>
+          <LinkContainer to="/hydrograph" onClick={() => setNavVisible(false)}>
+            <Nav.Link eventKey="link-plot">Hydrograph</Nav.Link>
+          </LinkContainer>
           <LinkContainer to="/learn-react" onClick={() => setNavVisible(false)}>
             <Nav.Link eventKey="link-learn-react">Learn React</Nav.Link>
           </LinkContainer>

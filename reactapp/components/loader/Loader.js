@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import LoadingAnimation from 'components/loader/LoadingAnimation';
-import { CsrfContext, TethysAppContext, UserContext } from 'components/context';
+import { AppContext } from 'components/context';
 
 const TETHYS_APP = process.env.TETHYS_APP;
 const TETHYS_APP_URL = TETHYS_APP.replaceAll('_', '-');
@@ -92,13 +92,9 @@ function Loader({children}) {
   } else {
     return (
       <>
-        <CsrfContext.Provider value={csrf}>
-          <TethysAppContext.Provider value={tethysApp}>
-            <UserContext.Provider value={user}>
-              {children}
-            </UserContext.Provider>
-          </TethysAppContext.Provider>
-        </CsrfContext.Provider>
+        <AppContext.Provider value={{csrf, user, tethysApp}}>
+          {children}
+        </AppContext.Provider>
       </>
     );
   }

@@ -8,11 +8,10 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import HeaderButton from 'components/buttons/HeaderButton';
 import NavButton from 'components/buttons/NavButton';
-import { TethysAppContext, UserContext } from 'components/context';
+import { AppContext } from 'components/context';
 
 const Header = ({onNavChange}) => {
-  const tethysApp = useContext(TethysAppContext);
-  const user = useContext(UserContext);
+  const {tethysApp, user} = useContext(AppContext);
   const showNav = () => onNavChange(true);
 
   return (

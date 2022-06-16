@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 
-import { TethysAppContext } from 'components/context';
+import { AppContext } from 'components/context';
 
 const TETHYS_HOST = process.env.TETHYS_HOST;
 
@@ -51,7 +51,7 @@ const ErrorTitle = styled.h1`
 `;
 
 const Error = ({title, image, children}) => {
-  const tethysApp = useContext(TethysAppContext);
+  const {tethysApp} = useContext(AppContext);
   return (
     <>
       <ErrorWhiteout>

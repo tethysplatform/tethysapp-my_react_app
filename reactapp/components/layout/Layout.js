@@ -5,10 +5,10 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import Header from 'components/layout/Header';
 import NavMenu from 'components/layout/NavMenu';
-import { TethysAppContext } from 'components/context';
+import { AppContext } from 'components/context';
 
 function Layout({children}) {
-  const tethysApp = useContext(TethysAppContext);
+  const {tethysApp} = useContext(AppContext);
   const [navVisible, setNavVisible] = useState(false);
 
   return (

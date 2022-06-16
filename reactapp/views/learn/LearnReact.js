@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import Color from 'color';
 import { useContext } from 'react';
 
-import { TethysAppContext } from 'components/context';
+import { AppContext } from 'components/context';
 
 import logo from 'assets/reactLogo.svg';
 
@@ -47,7 +47,7 @@ const ReactLink = styled.a`
 `;
 
 function LearnReact() {
-  const tethysApp = useContext(TethysAppContext);
+  const {tethysApp} = useContext(AppContext);
   return (
     <div>
       <ContentDiv

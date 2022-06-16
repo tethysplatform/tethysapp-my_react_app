@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from "react";
 
 import DebugError from './DebugError';
-import PrettyError from "./PrettyError";
+import GenericError from "./GenericError";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class ErrorBoundary extends React.Component {
     const DEBUG_MODE = process.env.TETHYS_DEBUG === 'true';
     if (this.state.hasError) {
       return !DEBUG_MODE ? (
-        <PrettyError />
+        <GenericError />
       ) : (
         <DebugError 
           error={this.state.error}

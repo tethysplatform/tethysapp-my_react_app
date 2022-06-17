@@ -30,7 +30,7 @@ function Home() {
 
     // Create map element
     let mapContainer = document.createElement("div");
-    mapContainer.style = "height: calc(100vh - 56px); width: 100%; overflow-y: hidden;";
+    mapContainer.style = "height: 100%; width: 100%; overflow-y: hidden;";
     mapContainer.dataset.testid = 'map-container';
     mapWrapperRef.current.append(mapContainer);
     
@@ -113,8 +113,8 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <div ref={mapWrapperRef} data-testid="map-wrapper"></div>
+    <div className="h-100">
+      <div ref={mapWrapperRef} data-testid="map-wrapper" className="h-100"></div>
       <div ref={popupRef} data-testid="map-popup" className="d-none">
         <Card style={{ width: '18rem' }}>
           <Card.Body>

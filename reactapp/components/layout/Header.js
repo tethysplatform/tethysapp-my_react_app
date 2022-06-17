@@ -16,8 +16,7 @@ const Header = ({onNavChange}) => {
 
   return (
     <>
-      <Container fluid className="px-0">
-        <Navbar expand="lg" bg="primary" variant="dark" className="shadow">
+        <Navbar fixed="top" expand="lg" bg="primary" variant="dark" className="shadow">
           <Container fluid className="px-4">
             <NavButton onClick={showNav} className="me-2"></NavButton>
             <LinkContainer to="/">
@@ -39,7 +38,6 @@ const Header = ({onNavChange}) => {
             </Form>
           </Container>
         </Navbar>
-      </Container>
     </>
   );
 };

@@ -14,7 +14,7 @@ function Layout({navLinks, routes, children}) {
   const [navVisible, setNavVisible] = useState(false);
 
   return (
-    <div>
+    <div className="h-100">
         <Header onNavChange={setNavVisible} />
         <NavMenu navTitle="Navigation"  navVisible={navVisible} onNavChange={setNavVisible}>
           <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">

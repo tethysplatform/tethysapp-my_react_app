@@ -28,12 +28,11 @@ const ContentDiv = styled.div`
   color: white;
   text-align: center;
   font-size: calc(10px + 2vmin);
-  min-height: calc(100vh - 56px);
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 `;
 
 const ReactLink = styled.a`
@@ -50,13 +49,13 @@ function LearnReact() {
   const darkAppColor = useMemo(() => Color(appColor.trim()).darken(0.8), [appColor]);
 
   return (
-    <div>
+    <>
       <ContentDiv
         className="primary-content-wrapper" 
         style={{ backgroundColor: darkAppColor }}>
         <Rotate><StyledImage src={logo} alt="React logo" /></Rotate>
           <p>
-            Edit <code>reactapp/views/learn/LearnReact.js</code> and save to reload.
+            Edit <code>LearnReact.js</code> and save to reload.
           </p>
           <ReactLink
             className="App-link"
@@ -67,7 +66,7 @@ function LearnReact() {
             Click Here to Learn React!
           </ReactLink>
       </ContentDiv>
-    </div>
+    </>
   );
 }
 

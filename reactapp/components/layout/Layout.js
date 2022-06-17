@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import PropTypes from 'prop-types';
 import { useState, useContext } from 'react';
@@ -14,8 +14,7 @@ function Layout({navLinks, routes, children}) {
   const [navVisible, setNavVisible] = useState(false);
 
   return (
-    <>
-      <BrowserRouter basename={tethysApp.rootUrl}>
+    <div>
         <Header onNavChange={setNavVisible} />
         <NavMenu navTitle="Navigation"  navVisible={navVisible} onNavChange={setNavVisible}>
           <Nav variant="pills" defaultActiveKey={tethysApp.rootUrl} className="flex-column">
@@ -33,8 +32,7 @@ function Layout({navLinks, routes, children}) {
           <Route path="*" element={<NotFound />}/>
         </Routes>
         {children}
-      </BrowserRouter>
-    </>
+    </div>
   );
 }
 
@@ -45,6 +43,9 @@ Layout.propTypes = {
       to: PropTypes.string,
       eventKey: PropTypes.string,
     })
+  ),
+  routes: PropTypes.arrayOf(
+    PropTypes.node,
   ),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),

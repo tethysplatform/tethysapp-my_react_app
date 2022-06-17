@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
@@ -11,7 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = createRoot(container);
     root.render(
       <StrictMode>
-        <App />
+        <BrowserRouter basename='/apps/my-react-app/'>
+          <App />
+        </BrowserRouter>
       </StrictMode>
     );
 

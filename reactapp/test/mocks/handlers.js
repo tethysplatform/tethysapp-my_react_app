@@ -30,9 +30,7 @@ const handlers = [
   rest.get('http://api.test/api/csrf/', (req, res, ctx) => {
     return res(
       ctx.status(200), 
-      ctx.json({'detail': 'CSRF cookie set'}),
-      ctx.set('Content-Type', 'application/json'),
-      ctx.set('SET-COOKIE', 'csrftoken=SxICmOkFldX4o4YVaySdZq9sgn0eRd3Ih6uFtY8BgU5tMyZc7n90oJ4M2My5i7cy; expires=Wed, 07 Jun 2023 22:21:17 GMT; Max-Age=31449600; Path=/; SameSite=Lax')
+      ctx.set('X-CSRFToken', 'SxICmOkFldX4o4YVaySdZq9sgn0eRd3Ih6uFtY8BgU5tMyZc7n90oJ4M2My5i7cy')
     );
   }),
   rest.get('http://api.test/api/whoami/', (req, res, ctx) => {

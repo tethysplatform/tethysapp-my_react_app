@@ -102,7 +102,7 @@
       "react-app-polyfill/jsdom"
     ],
     "setupFilesAfterEnv": [
-      "<rootDir>/reactapp/test/setupTests.js"
+      "<rootDir>/reactapp/config/tests/setupTests.js"
     ],
     "testMatch": [
       "<rootDir>/reactapp/**/__tests__/**/*.{js,jsx,ts,tsx}",
@@ -110,9 +110,9 @@
     ],
     "testEnvironment": "jsdom",
     "transform": {
-      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/reactapp/test/transforms/babelTransform.js",
-      "^.+\\.css$": "<rootDir>/reactapp/test/transforms/cssTransform.js",
-      "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/reactapp/test/transforms/fileTransform.js"
+      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/reactapp/config/tests/transforms/babelTransform.js",
+      "^.+\\.css$": "<rootDir>/reactapp/config/tests/transforms/cssTransform.js",
+      "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/reactapp/config/tests/transforms/fileTransform.js"
     },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\](?!(ol|ol-mapbox-style)[/\\\\]).+\\.(js|jsx|mjs|cjs|ts|tsx)$",
@@ -138,7 +138,7 @@
       "<rootDir>/node_modules"
     ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/reactapp/test/mocks/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/reactapp/config/tests/mocks/fileMock.js",
       "^.+\\.module\\.(css|sass|scss|less)$": "identity-obj-proxy",
       "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
     },

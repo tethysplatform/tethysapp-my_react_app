@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const TETHYS_HOST = process.env.TETHYS_HOST;
 
-const tethysAPIClient = axios.create({
-  baseURL: `${TETHYS_HOST}/api`,
+const apiClient = axios.create({
+  baseURL: `${TETHYS_HOST}`,
   withCredentials: true,
   headers: {
     'Accept': 'application/json',
@@ -24,6 +24,6 @@ function handleError(error) {
   return Promise.reject(error);
 }
 
-tethysAPIClient.interceptors.response.use(handleSuccess, handleError);
+apiClient.interceptors.response.use(handleSuccess, handleError);
 
-export default tethysAPIClient;
+export default apiClient;

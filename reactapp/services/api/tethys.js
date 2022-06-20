@@ -1,22 +1,22 @@
-import tethysAPIClient from "services/api/client";
+import apiClient from "services/api/client";
 
 function getSession() {
-  return tethysAPIClient.get('/session/');
+  return apiClient.get('/api/session/');
 }
 
 function getCSRF() {
-  return tethysAPIClient.get('/csrf/')
+  return apiClient.get('/api/csrf/')
     .then(response => {
       return response.headers['x-csrftoken'];
     });
 }
 
 function getUserData() {
-  return tethysAPIClient.get('/whoami/');
+  return apiClient.get('/api/whoami/');
 }
 
 function getAppData(tethys_app_url) {
-  return tethysAPIClient.get(`/apps/${tethys_app_url}/`);
+  return apiClient.get(`/api/apps/${tethys_app_url}/`);
 }
 
 const tethysAPI = {

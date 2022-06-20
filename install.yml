@@ -11,6 +11,7 @@ requirements:
     - conda-forge
     packages:
     - nodejs
+    - pandas
 
   pip:
 

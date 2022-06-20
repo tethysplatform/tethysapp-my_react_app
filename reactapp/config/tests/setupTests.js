@@ -18,3 +18,7 @@ beforeAll(() => server.listen());
 // (which is important for test isolation):
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
+
+// Mocks for tests involving plotly
+window.URL.createObjectURL = jest.fn();
+HTMLCanvasElement.prototype.getContext = jest.fn();

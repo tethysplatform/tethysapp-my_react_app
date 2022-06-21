@@ -5,9 +5,8 @@ import tethysAPI from 'services/api/tethys';
 import LoadingAnimation from 'components/loader/LoadingAnimation';
 import { AppContext } from 'components/context';
 
-const TETHYS_APP = process.env.TETHYS_APP;
-const TETHYS_APP_URL = TETHYS_APP.replaceAll('_', '-');
-const TETHYS_LOADER_DELAY = process.env.TETHYS_LOADER_DELAY;
+const APP_ID = process.env.TETHYS_APP_ID;
+const LOADER_DELAY = process.env.TETHYS_LOADER_DELAY;
 
 function Loader({children}) {
   const [error, setError] = useState(null);
@@ -18,7 +17,7 @@ function Loader({children}) {
     // Delay setting the error to avoid flashing the loading animation
     setTimeout(() => {
       setError(error);
-    }, TETHYS_LOADER_DELAY);
+    }, LOADER_DELAY);
   };
 
   useEffect(() => {  
@@ -27,7 +26,7 @@ function Loader({children}) {
       .then(() => {
         // Then load all other app data
         Promise.all([
-            tethysAPI.getAppData(TETHYS_APP_URL), 
+            tethysAPI.getAppData(APP_ID), 
             tethysAPI.getUserData(), 
             tethysAPI.getCSRF(),
           ])
@@ -38,7 +37,7 @@ function Loader({children}) {
             // Allow for minimum delay to display loader
             setTimeout(() => {
               setIsLoaded(true)
-            }, TETHYS_LOADER_DELAY);
+            }, LOADER_DELAY);
           })
           .catch(handleError);
       }).catch(handleError);

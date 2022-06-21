@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 
 import App from 'App';
 
+const APP_ROOT_URL = process.env.TETHYS_APP_ROOT_URL;
 let container = null;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = createRoot(container);
     root.render(
       <StrictMode>
-        <BrowserRouter basename='/apps/my-react-app/'>
+        <BrowserRouter basename={APP_ROOT_URL}>
           <App />
         </BrowserRouter>
       </StrictMode>

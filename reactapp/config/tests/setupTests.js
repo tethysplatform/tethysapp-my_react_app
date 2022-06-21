@@ -8,7 +8,7 @@ import { server } from './mocks/server.js';
 // Mock `window.location` with Jest spies and extend expect
 import "jest-location-mock";
 
-// Make .env files accessible to tests (path relative to package.json)
+// Make .env files accessible to tests (path relative to project root)
 require('dotenv').config({ path: './reactapp/config/tests/test.env'});
 
 // Setup mocked Tethys API

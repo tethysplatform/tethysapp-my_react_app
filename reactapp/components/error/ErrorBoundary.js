@@ -25,7 +25,7 @@ class ErrorBoundary extends React.Component {
   }
 
   render() {
-    const DEBUG_MODE = process.env.TETHYS_DEBUG === 'true';
+    const DEBUG_MODE = process.env.TETHYS_DEBUG_MODE === 'true';
     if (this.state.hasError) {
       return !DEBUG_MODE ? (
         <GenericError />
